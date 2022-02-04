@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import './App.css';
 import InputField from './components/InputField';
 import TodoList from './components/TodoList';
 import { Todo } from './models/todo-model';
@@ -50,8 +49,8 @@ const App: FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="App">
-        <span className='heading'>Tasktify</span>
+      <div className="w-screen h-screen flex flex-col items-center font-['Rowdies'] bg-blue-500">
+        <span className='uppercase text-[30px] md:text-[40px] my-[15px] md:my-[30px]  z-1 text-white text-center'>Tasks Today</span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList
           todos={todos}

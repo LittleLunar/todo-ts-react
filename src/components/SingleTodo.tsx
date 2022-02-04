@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import '../styles/SingleTodo.css'
 import { Todo } from '../models/todo-model';
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import { MdDone } from 'react-icons/md'
@@ -48,7 +47,7 @@ const SingleTodo: FC<Props> = ({ todo, todos, setTodos, index }) => {
       {
         (provided, snapshot) => (
           <form
-            className={`todos__single ${snapshot.isDragging ? "drag" : ""}`}
+            className={`bg-singleTodo w-full md:w-[95%] flex flex-row rounded-[5px] p-[20px] mt-[15px] transition-all hover:shadow-submitAc hover:scale-[1.03] ${snapshot.isDragging ? "shadow-drag" : ""}`}
             onSubmit={(e) => handleEdit(e, todo.id)}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -61,26 +60,26 @@ const SingleTodo: FC<Props> = ({ todo, todos, setTodos, index }) => {
                   type="text"
                   value={editTodo}
                   onChange={(e) => setEditTodo(e.target.value)}
-                  className='todos__single--text'
+                  className='flex-1 p-[5px] border-none text-[20px] focus:outline-none'
                 />
               ) : (todo.isDone ? (
-                <s className='todos__single--text'>{todo.todo}</s>
+                <s className='flex-1 p-[5px] border-none text-[20px] focus:outline-none'>{todo.todo}</s>
               ) : (
-                <span className='todos__single--text'>{todo.todo}</span>
+                <span className='flex-1 p-[5px] border-none text-[20px] focus:outline-none'>{todo.todo}</span>
               )
               )
 
             }
 
-            <div>
-              <span className='icon' onClick={() => {
+            <div className='flex items-center gap-[20px]'>
+              <span className=' ml-[10px] text-[25px] cursor-pointer' onClick={() => {
                 if (!edit && !todo.isDone) {
                   setEdit(!edit);
 
                 }
               }}><AiFillEdit /></span>
-              <span className='icon' onClick={() => handleDelete(todo.id)}><AiFillDelete /></span>
-              <span className="icon" onClick={() => handleDone(todo.id)}><MdDone /></span>
+              <span className='ml-[10px] text-[25px] cursor-pointer' onClick={() => handleDelete(todo.id)}><AiFillDelete /></span>
+              <span className="ml-[10px] text-[25px] cursor-pointer" onClick={() => handleDone(todo.id)}><MdDone /></span>
             </div>
           </form>
 
