@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import InputField from './components/InputField';
 import TodoList from './components/TodoList';
 import { Todo } from './models/todo-model';
