@@ -1,13 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import InputField from './components/InputField';
 import TodoList from './components/TodoList';
 import { Todo } from './models/todo-model';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { useLocalStorage } from 'usehooks-ts';
 
 const App: FC = () => {
   const [todo, setTodo] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useLocalStorage<Todo[]>('lunardev-todoapp-todos', []);
+  const [completedTodos, setCompletedTodos] = useLocalStorage<Todo[]>('lunardev-todoapp-completed', []);
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +47,7 @@ const App: FC = () => {
     setCompletedTodos(complete)
     setTodos(active)
   }
+
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
